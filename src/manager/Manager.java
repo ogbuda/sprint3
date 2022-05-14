@@ -105,6 +105,7 @@ public class Manager {
 
     public void updateEpic(Epic epic) {
         if (epics.containsKey(epic.getId())) {
+            epic.setSubtasks(epics.get(epic.getId()).getSubtasks());
             epics.replace(epic.getId(), epic);
         }
     }
@@ -114,6 +115,9 @@ public class Manager {
     }
 
     public void removeEpicById(int epicId) {
+        for (Subtask subtask: epics.get(epicId).getSubtasks()) {
+            subtasks.remove(subtask.getId());
+        }
         epics.remove(epicId);
     }
 
@@ -121,8 +125,9 @@ public class Manager {
         if (subtasks.containsKey(subtaskId)) {
             Subtask subtask = subtasks.get(subtaskId);
             Epic epic = epics.get(subtask.getEpicId());
-            epic.removeSubtask(subtask);
+            epic.getSubtasks().remove(subtask);
             epic.setStatus(calculateStatus(epic));
+            subtasks.remove(subtaskId);
         }
     }
 

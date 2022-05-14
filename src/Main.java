@@ -11,6 +11,7 @@ public class Main {
 
         Manager manager = new Manager();
 
+        System.out.println("Task methods testing:");
         Task homeworkTask = new Task("do homework", "do math", Status.NEW);
         Task carbonaraTask = new Task("go to the grocery", "buy spaghetti and bacon", Status.NEW);
         manager.addTask(homeworkTask);
@@ -27,6 +28,7 @@ public class Main {
         manager.removeAllTasks();
         System.out.println(manager.getTasks());
         System.out.println("----------------------------------");
+        System.out.println("Epic methods testing:");
 
         Epic docEpic = new Epic("take care about health", "visit doctors", Status.NEW);
         Epic workEpic = new Epic("find clients", "", Status.NEW);
@@ -49,23 +51,22 @@ public class Main {
         manager.updateSubtask(updatedWorkTask1);
         System.out.println(manager.getEpicById(2));
         System.out.println("----------------------------------");
-        Epic updatedWorkEpic = new Epic("find clients", "", Status.IN_PROGRESS, 2);
+        System.out.println("Subtask methods testing:");
+        Epic updatedWorkEpic = new Epic("find clients", "hahaha", Status.NEW, workEpic.getId());
         manager.updateEpic(updatedWorkEpic);
         System.out.println(manager.getEpicById(2));
-//        Subtask updatedDocTask2 = new Subtask("go to doctor", "get a dermatologist consultation", Status.IN_PROGRESS, docEpic);
-//        manager.updateSubtask(updatedDocTask2);
-//        Subtask updatedUpdatedDocTask2 = new Subtask("go to doctor", "get a dermatologist consultation", Status.DONE, docEpic);
-//        System.out.println(manager.getTasks().toString() + '\n');
-//        manager.removeTaskById(2);
-//        System.out.println(manager.getSubtasksOfEpic(docEpic).toString() + '\n');
-//        System.out.println(manager.getTaskById(3).toString() + '\n');
-//        manager.removeAllSubtasks();
-//        System.out.println(manager.getSubtasks());
-//        manager.removeAllTasks();
-//        System.out.println(manager.getTasks());
-//        manager.removeAllEpics();
-//        System.out.println(manager.getEpics());
-
+        manager.removeEpicById(2);
+        System.out.println(manager.getSubtasks());
+        manager.removeSubtaskById(docTask1.getId());
+        System.out.println(manager.getEpics());
+        System.out.println(manager.getSubtasks());
+        System.out.println(manager.getSubtasksOfEpic(docEpic));
+        manager.removeAllSubtasks();
+        manager.removeAllEpics();
+        manager.removeAllTasks();
+        System.out.println(manager.getTasks());
+        System.out.println(manager.getEpics());
+        System.out.println(manager.getSubtasks());
     }
 
 }
