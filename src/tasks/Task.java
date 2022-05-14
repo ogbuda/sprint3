@@ -37,7 +37,7 @@ public class Task {
         if (obj == null) return false;
         if (getClass() == obj.getClass()) {
             Task otherTask = (Task) obj;
-            return name.equals(otherTask.name) && desc.equals(otherTask.desc);
+            return id == otherTask.id;
         }
         return false;
     }
