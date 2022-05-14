@@ -14,6 +14,13 @@ public class Task {
         this.status = status;
     }
 
+    public Task(String name, String desc, Status status, int id){
+        this.name = name;
+        this.desc = desc;
+        this.status = status;
+        this.id = id;
+    }
+
     @Override
     public String toString(){
         return getClass().getSimpleName() + "{" + "name=" + '\'' + name + '\'' + ", desc=" + '\'' + desc + '\'' + ", id=" + id + ", status=" + status + "}";

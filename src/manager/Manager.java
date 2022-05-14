@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Manager {
-    private int idForNewTasks;
-    private int idForNewSubtasks;
-    private int idForNewEpics;
+    private int idForNewTasks = 1;
+    private int idForNewSubtasks = 1;
+    private int idForNewEpics = 1;
     public HashMap<Integer, Task> tasks = new HashMap<>();
     public HashMap<Integer, Epic> epics = new HashMap<>();
     public HashMap<Integer, Subtask> subtasks = new HashMap<>();
@@ -32,26 +32,37 @@ public class Manager {
         tasks.clear();
     }
 
-    public void removeAllSubtasks() { subtasks.clear();}
+    public void removeAllSubtasks() {
+        subtasks.clear();
+    }
 
-    public void removeAllEpics() {epics.clear();}
+    public void removeAllEpics() {
+        epics.clear();
+    }
 
-    public Task getTaskById(int id) {return tasks.get(id);}
+    public Task getTaskById(int id) {
+        return tasks.get(id);
+    }
 
-    public Subtask getSubtaskById(int id) {return subtasks.get(id);}
+    public Subtask getSubtaskById(int id) {
+        return subtasks.get(id);
+    }
 
-    public Epic getEpicById(int id) {return epics.get(id);}
+    public Epic getEpicById(int id) {
+        return epics.get(id);
+    }
 
     public void generateAndSetTaskId(Task task) {
         task.setId(idForNewTasks);
         idForNewTasks++;
     }
 
-    public void generateAndSetSubtaskId(Subtask subtask){
+    public void generateAndSetSubtaskId(Subtask subtask) {
         subtask.setId(idForNewSubtasks);
         idForNewSubtasks++;
     }
-    public void generateAndSetEpicId(Epic epic){
+
+    public void generateAndSetEpicId(Epic epic) {
         epic.setId(idForNewEpics);
         idForNewEpics++;
     }
@@ -83,9 +94,11 @@ public class Manager {
     }
 
     public void updateSubtask(Subtask subtask) {
-        if (subtasks.containsKey(subtask.getEpicId())) {
+        if (epics.containsKey(subtask.getEpicId())) {
             Epic epic = epics.get(subtask.getEpicId());
+            epic.getSubtasks().remove(subtask);
             epic.getSubtasks().add(subtask);
+            subtasks.replace(subtask.getId(), subtask);
             epic.setStatus(calculateStatus(epic));
         }
     }

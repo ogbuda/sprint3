@@ -10,6 +10,10 @@ public class Epic extends Task {
     public Epic(String name, String desc, Status status) {
         super(name, desc, status);
     }
+    public Epic(String name, String desc, Status status, int id) {
+        super(name, desc, status, id);
+    }
+
 
     public ArrayList<Subtask> getSubtasks() {
         return subtasks;
@@ -18,15 +22,6 @@ public class Epic extends Task {
     public void setSubtasks(ArrayList<Subtask> subtasks) {
         this.subtasks = subtasks;
     }
-
-//    public void addSubtask(Subtask subtask) {
-//        if (subtasks.contains(subtask)) {
-//            subtasks.remove(subtask);
-//            subtasks.add(subtask);
-//            return;
-//        }
-//        subtasks.add(subtask);
-//    }
 
     public void removeSubtask(Subtask subtask) {
         subtasks.remove(subtask);
