@@ -1,4 +1,8 @@
-
+import manager.Manager;
+import tasks.Epic;
+import tasks.Status;
+import tasks.Subtask;
+import tasks.Task;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,16 +15,17 @@ public class Main {
         Epic docEpic = new Epic("take care about health", "", Status.NEW);
         Epic workEpic = new Epic("find clients", "", Status.NEW);
 
-        System.out.println(manager.getTasks().toString() + '\n');
-        manager.addTask(docEpic);
-        System.out.println(manager.getTasks().toString() + '\n');
-        manager.addTask(workEpic);
-        System.out.println(manager.getTasks().toString() + '\n');
+        System.out.println(manager.getEpics().toString() + '\n');
+        manager.addEpic(docEpic);
+        System.out.println(manager.getEpics().toString() + '\n');
+        manager.addEpic(workEpic);
+        System.out.println(manager.getEpics().toString() + '\n');
         Subtask docTask1 = new Subtask("go to doctor", "get a surgeon consultation", Status.NEW, docEpic);
+        manager.addSubtask(docTask1);
+        System.out.println(manager.getEpics().toString() + '\n');
+        System.out.println(manager.getSubtasks().toString() + '\n');
         Subtask docTask2 = new Subtask("go to doctor", "get a dermatologist consultation", Status.NEW, docEpic);
         Subtask workTask1 = new Subtask("find clients", "use profi.ru", Status.NEW, workEpic);
-        manager.addTask(docTask1);
-        System.out.println(manager.getTasks().toString() + '\n');
         manager.addTask(docTask2);
         System.out.println(manager.getTasks().toString() + '\n');
         manager.addTask(workTask1);
@@ -35,7 +40,7 @@ public class Main {
         Subtask updatedUpdatedDocTask2 = new Subtask("go to doctor", "get a dermatologist consultation", Status.DONE, docEpic);
         System.out.println(manager.getTasks().toString() + '\n');
         manager.removeTaskById(2);
-        System.out.println(manager.getSubtasks(docEpic).toString() + '\n');
+        System.out.println(manager.getSubtasksOfEpic(docEpic).toString() + '\n');
         System.out.println(manager.getTaskById(3).toString() + '\n');
         manager.removeAllTasks();
         System.out.println(manager.getTasks());

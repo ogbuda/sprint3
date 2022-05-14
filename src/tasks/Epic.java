@@ -1,3 +1,5 @@
+package tasks;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -17,14 +19,14 @@ public class Epic extends Task {
         this.subtasks = subtasks;
     }
 
-    public void addSubtask(Subtask subtask) {
-        if (subtasks.contains(subtask)) {
-            subtasks.remove(subtask);
-            subtasks.add(subtask);
-            return;
-        }
-        subtasks.add(subtask);
-    }
+//    public void addSubtask(Subtask subtask) {
+//        if (subtasks.contains(subtask)) {
+//            subtasks.remove(subtask);
+//            subtasks.add(subtask);
+//            return;
+//        }
+//        subtasks.add(subtask);
+//    }
 
     public void removeSubtask(Subtask subtask) {
         subtasks.remove(subtask);
